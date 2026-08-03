@@ -12,7 +12,7 @@ namespace nu
 
 	void Scene::RemoveAllActors()
 	{
-		m_actor.clear();
+		m_actors.clear();
 	}
 
 	void Scene::Update(float dt)

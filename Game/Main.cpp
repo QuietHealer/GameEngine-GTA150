@@ -87,9 +87,9 @@ int main()
     std::cout << "============odject============\n";
     {
         Object objectA;
-        Object objectB(ojectA);
+        Object objectB(objectA);
         Object objectC;
-        objectC = ojectA;
+        objectC = objectA;
 
     }
 
@@ -97,7 +97,7 @@ int main()
     {
         Object* objectA = new Object();
         std::cout << objectA << std::endl;
-        Object* objectB = new Object(objectA);
+        Object* objectB = new Object(*objectA);
         std::cout << objectB << std::endl;
         Object* objectC =nullptr;
         objectC = objectA;
@@ -116,7 +116,7 @@ int main()
         std::cout << objectA.get() << std::endl;
         std::unique_ptr<Object> objectB;
         objectB = std::move(objectA);
-        std::cout << objectA.get() << std::endl;
+        std::cout << objectB.get() << std::endl;
 
         objectB.reset();
     }

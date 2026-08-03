@@ -44,9 +44,8 @@ void Player::Update(float dt)
         desc.transform = m_transform;
         desc.speed = 1000.0f;
         desc.lifespan = 1.0f;
-
-        Bullet* bullet = new Bullet{ desc };
-        m_scene->AddActor(std::make_unique<Bullet>(bullet));
+                
+        m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
     }
     if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_X))
     {

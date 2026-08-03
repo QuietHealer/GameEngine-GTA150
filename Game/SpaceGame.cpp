@@ -157,6 +157,5 @@ void SpaceGame::SpawnEnemy()
 	enemyDesc.damping = 3.0f;
 	enemyDesc.speed = 800.0f;
 
-	Enemy* enemy = new Enemy{ enemyDesc };
-	m_scene->AddActor(std::make_unique<Enemy>(enemy));
+	m_scene->AddActor(std::make_unique<Enemy>(enemyDesc));
 }
