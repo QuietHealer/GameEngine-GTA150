@@ -143,6 +143,10 @@ int main()
 
     Engine::Get().GetAudio().AddSound("sound", "audio/whistle.mp3");
 
+    // create texture, using shared_ptr so texture can be shared
+    std::shared_ptr<Texture> texture = std::make_shared<Texture>();
+    texture->Load("textures/spaceship_BLUE.png", Engine::Get().GetRenderer());
+
     // MANE LOOP
     bool quit = false;
     while (!quit) 
@@ -161,6 +165,7 @@ int main()
             }
         }
 
+        // UPDATE
         Engine::Get().Update();
 
         float dt = Engine::Get().GetTime().GetDeltaTime();
@@ -168,12 +173,12 @@ int main()
         game.Update(dt);
         audio->update();
 
+        // DRAW
         Engine::Get().GetRenderer().SetColor(0.0f, 0.0f, 0.0f);
         Engine::Get().GetRenderer().Clear();
 
-
+        Engine::Get().GetRenderer().DrawTexture(texture.get(), 0.0f, 0.0f);
         game.Draw(Engine::Get().GetRenderer());
-
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
 
         Engine::Get().GetRenderer().Present();

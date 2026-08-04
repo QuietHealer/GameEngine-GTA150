@@ -19,6 +19,5 @@ public:
 	void Update(float dt) override;
 
 private:
-	int m_ammo = 0;
 	float m_speed = 800.0f;
 };

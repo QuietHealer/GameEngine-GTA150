@@ -23,14 +23,14 @@ namespace nu
 
     void Actor::Draw(const Renderer& renderer) const
     {
-        renderer.DrawModel(m_model, m_transform);
-            //renderer.SetColor(m_model.GetColor().r, m_model.GetColor().g, m_model.GetColor().b);
-            //renderer.DrawFillRect(m_transform.position.x - (m_transform.scale * 0.5f),
-                //m_transform.position.y - (m_transform.scale * 0.5f), m_transform.scale, m_transform.scale);
+        if (m_model)
+        {
+            renderer.DrawModel(*m_model, m_transform);
+        }
     }
 
     float Actor::GetRadius() const
     {
-        return m_model.GetRadius() * m_transform.scale * 0.9f;
+        return m_model->GetRadius() * m_transform.scale * 0.7f;
     }
 }
