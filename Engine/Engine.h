@@ -17,6 +17,7 @@
 #include "GameTime.h"
 #include "ParticleSystem.h"
 
+#include "ResourceManager.h"
 
 #include "Actor.h"
 #include "Scene.h"
