@@ -31,6 +31,7 @@ bool SpaceGame::Initialize()
 
 	m_scoreText = new Text(Resources().GetWithID<Font>("gmae_font", "fonts/airstrike.ttf", 32.0f));
 	m_livesText = new Text(Resources().GetWithID<Font>("gmae_font", "fonts/airstrike.ttf", 32.0f));
+	//m_bg = Resources().Get<Texture>("textures/bgStars.png", Engine::Get().GetRenderer());
 
 	Engine::Get().GetAudio().AddSound("laser", "audio/laser.wav");
 	Engine::Get().GetAudio().AddSound("explosion", "audio/Explosion.wav");
@@ -70,6 +71,7 @@ void SpaceGame::Update(float dt)
 		break;
 	case GameState::Game:
 		m_spawnTime -= dt;
+		
 		if (m_spawnTime <= 0.0f)
 		{
 			m_spawnTime = nu::RandomFloat(3.0f, 5.0f);
@@ -102,7 +104,7 @@ void SpaceGame::Update(float dt)
 
 void SpaceGame::Draw(Renderer& renderer)
 {
-	//renderer.DrawTexture(*nu::Resources().Get<Texture>("", Engine::Get().GetRenderer()));
+		renderer.DrawTexture(*Resources().Get<Texture>("textures/Wallpaper.jpg", Engine::Get().GetRenderer()), 1024.0f, 540.0f);
 	//Engine::Get().GetRenderer().DrawTexture(*Resources().Get<Texture>("textures/spaceship_BLUE.png", Engine::Get().GetRenderer()), 0.0f, 0.0f);
 	switch (m_gameState)
 	{
@@ -112,7 +114,6 @@ void SpaceGame::Draw(Renderer& renderer)
 	case GameState::StartGame:
 	case GameState::StartLevel:
 	case GameState::Game:
-
 		m_scoreText->Create(renderer, "Score: " + std::to_string(m_score), { 1.0f, 1.0f, 1.0f });
 		m_scoreText->Draw(renderer, 30, 30);
 

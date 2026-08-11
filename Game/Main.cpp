@@ -10,6 +10,7 @@
 #include <map>
 #include <memory>
 #include <random>
+#include <fstream>
 
 
 using namespace nu;
@@ -119,7 +120,7 @@ int main()
     }
     */
 
-    std::cout << "============odject============\n";
+    /*std::cout << "============odject============\n";
     {
         Object objectA;
         Object objectB(objectA);
@@ -156,9 +157,91 @@ int main()
         objectB.reset();
     }
 
-    //return 0;
+    return 0;*/
 
     SetWorkingDirectory("assets");
+    
+    /*{
+        std::ifstream file("data/text.txt");
+        if (file.is_open())
+        {
+            std::string str;
+            while (std::getline(file, str))
+            {  
+                std::cout << str << std::endl;
+            }
+        }
+        else
+        {
+            std::cout << "";
+        }
+        file.close();
+    }
+
+
+    {
+        std::ofstream file("data/text.txt", std::ios::app);
+        if (file.is_open())
+        {
+            file << "Have a good day.\n";
+        }
+    }
+
+    {
+        std::fstream file("data/text.txt", std::ios::in | std::ios::out | std::ios::app);
+        if (file.is_open())
+        {
+            file << "Add a line.\n";
+            file.seekg(0);
+            std::string str;
+            while (std::getline(file, str))
+            {
+                std::cout << str << std::endl;
+            }
+        }
+    }
+
+    {
+        std::string name;
+        int score;
+        bool isAlive;
+
+        bool save = true;
+        if (save)
+        {
+            name = "Aiden";
+            score = 1234;
+            isAlive = true;
+
+            std::ofstream file("data/game.txt");
+            if (file.is_open())
+            {
+                file << name << "\n";
+                file << score << "\n";
+                file << std::boolalpha << isAlive << "\n";
+
+            }
+        }
+        bool load = true;
+        if (load)
+        {
+            std::ifstream file("data/text.txt");
+            if (file.is_open())
+            {
+                std::getline(file, name);
+
+                std::string str;
+                std::getline(file, str);
+
+                score = std::stoi(str);
+                file >> std::boolalpha >> isAlive;
+            }
+    }
+
+    
+
+    return 0;*/
+
     // INITALIZATION
     Engine::Get().Initialize();
 

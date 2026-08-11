@@ -41,6 +41,7 @@ private:
 
 	float m_spawnTime = 0.0f;
 	int m_spawnCount = 0;
+	//res_t<Texture> m_bg;
 
 	GameState m_gameState = GameState::Title;
 

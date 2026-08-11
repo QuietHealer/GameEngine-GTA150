@@ -11,7 +11,7 @@ namespace nu
 {
 	bool Engine::Initialize()
 	{
-		m_renderer.Initialize("Game Engine", 1920, 1024);
+		m_renderer.Initialize("Game Engine", 2048, 1080);
 		m_particleSystem.Initialize();
 		m_audio.Initialize();
 		m_input.Initialize();

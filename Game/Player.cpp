@@ -5,6 +5,9 @@
 #include "Assets.h"
 #include "SpaceGame.h"
 
+
+using namespace nu;
+
 void Player::Update(float dt) 
 {
     // movement
@@ -40,7 +43,7 @@ void Player::Update(float dt)
         BulletDesc desc;
         desc.name = "Bullet";
         desc.tag = "PlayerBullet";
-        desc.model = assets::bulletModel;
+        desc.texture = Resources().Get<Texture>("textures/bullet.png", Engine::Get().GetRenderer());
         desc.transform = m_transform;
         desc.speed = 1000.0f;
         desc.lifespan = 1.0f;
