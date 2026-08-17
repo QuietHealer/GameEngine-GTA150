@@ -7,17 +7,16 @@
       "tag": "Player",
       "active": true,
       "speed": 750.0,
-      "damping": 3,
-      "texture": "textures/spaceship_BLUE.png",
+      "damping": 3,      
       "transform": {
         "position": [ 640, 512 ],
         "rotation": 0,
         "scale": 1
       },
-      "componets": [
+      "components": [
         {
           "type": "SpriteRendererComponent",
-          "texture": ""
+          "texture": "textures/spaceship_BLUE.png"
         }
       ]
     },

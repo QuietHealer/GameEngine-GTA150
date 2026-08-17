@@ -55,7 +55,7 @@ int main()
     SetWorkingDirectory("assets");
 
     // load the json data from a file
-    std::string buffer;
+    /*std::string buffer;
     if (ReadTextFile("data/data.json", buffer))
     {
         // show the contents of the json file (debug)
@@ -90,12 +90,12 @@ int main()
 
         // show the data
 
-    }
+    }*/
 
 
-    return 0;
 
-    //Factory::Instance().Register<Object>("Object");
+
+    Factory::Instance().Register<Object>("Object");
     //Factory::Instance().Register<Actor>("Actor");
     //Factory::Instance().Register<Player>("Player");
     //Factory::Instance().Register<Player>("Enmey");

@@ -79,11 +79,7 @@ namespace nu
 
         Transform m_transform;
         Vector2 m_velocity{ 0, 0 };
-
-        res_t<Model> m_model;
-        res_t<Texture> m_texture;
-
-        std::vector<Component> m_component;
+        std::vector<Component*> m_component;
 
 
         Scene* m_scene{ nullptr };

@@ -146,7 +146,7 @@ void SpaceGame::OnPlayerDead()
 
 void SpaceGame::SpawnPlayer()
 {
-		auto actor = Factory::Instance().Create<Actor>("playerPrototype");
+		auto actor = Factory::Instance().Create<Actor>("PlayerPrototype");
 		//actor->SetPosition{}
 		m_scene->AddActor(std::move(actor));
 	

@@ -34,7 +34,7 @@ namespace nu
     class Creator : public ICreator
     {
     public:
-        std::unique_ptr<Object> Create() override { return std::unique_ptr<T>(); }
+        std::unique_ptr<Object> Create() override { return std::make_unique<T>(); }
     };
 
     template <typename T>
@@ -44,9 +44,9 @@ namespace nu
     public:
         PrototypeCreator(std::unique_ptr<Object> prototype) :
             m_prototype{std::move(prototype)}
-        {
-            return m_prototype->Clone();
-        }
+        {}
+
+        std::unique_ptr<Object> Create() override { return m_prototype->Clone(); }
 
     private:
         std::unique_ptr<Object> m_prototype;
@@ -82,7 +82,10 @@ namespace nu
             std::cerr << "Object already registered: " << name << std::endl;   
             return;
         }
-        //m_registry[lowerName] = std::make_unique<T>(Creator<T>());
+
+        std::cout << "Object registered: " << name << std::endl;
+
+        m_registry[lowerName] = std::make_unique<Creator<T>>();
     }
 
     template<typename T>
@@ -90,7 +93,15 @@ namespace nu
     inline void Factory::RegisterPrototype(const std::string& name, std::unique_ptr<Object> prototype)
     {
         std::string lowerName = ToLower(name);
+        if (m_registry.contains(lowerName))
+        {
+            std::cerr << "Object already registered: " << name << std::endl;
+            return;
+        }
 
+        std::cout << "Object prototype registered: " << name << std::endl;
+
+        m_registry[lowerName] = std::make_unique<PrototypeCreator<T>>(std::move(prototype));
     }
 
     template<typename T>

@@ -11,15 +11,6 @@ namespace nu
 {
     FACTORY_REGISTER(Actor)
 
-    //class RegisterActor
-    //{
-    //public:
-    //    RegisterActor()
-    //    {
-    //        Factory::Instance().Register<Actor>("Acter");
-    //    }
-    //};
-
     void Actor::Update(float dt)
     {
         if (m_lifespan > 0.0f)
@@ -28,10 +19,10 @@ namespace nu
             m_destroyed = (m_lifespan <= 0.0f);
         }
 
-        //for (auto component : m_component)
-        //{
-        //    component->Update();
-        //}
+        for (auto component : m_component)
+        {
+            component->Update(dt);
+        }
 
         // ph
         m_transform.position += (m_velocity * dt);
@@ -45,7 +36,7 @@ namespace nu
     {
         for (auto component : m_component)
         {
-            auto rendererComponent = dynamic_cast<RendererComponent*>(&component);
+            auto rendererComponent = dynamic_cast<RendererComponent*>(component);
 
             rendererComponent->Draw(renderer);
         }
@@ -66,17 +57,32 @@ namespace nu
             m_transform.Read(JSON_GET_NAME(value, "transform"));
         }
 
-        std::string textureName;
-        JSON_READ_NAME(value, "texture", textureName);
+        //std::string textureName;
+        //JSON_READ_NAME(value, "texture", textureName);
 
         JSON_READ_NAME(value, "tag", m_tag);
         JSON_READ_NAME(value, "lifespan", m_lifespan);
         JSON_READ_NAME(value, "velocity", m_velocity);
         JSON_READ_NAME(value, "damping", m_damping);
 
-        //if (JSON_HAS_NAME(value, "components"))
-        //{
-        //    for (auto& componentValue : JSON_GET_NAME(value,);
-        //}
+        if (JSON_HAS_NAME(value, "components"))
+        {
+            for (auto& componentValue : JSON_GET_NAME(value, "components").GetArray())
+            {
+                // get component type
+                std::string typeName;
+                JSON_READ_NAME(componentValue, "type", typeName);
+
+                auto component = Factory::Instance().Create<Component>(typeName);
+                component->Read(componentValue);
+
+                if (component)
+                {
+                    //
+                }
+
+
+            }
+        }
     }
 }

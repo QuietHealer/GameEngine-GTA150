@@ -5,7 +5,15 @@
 #include "Assets.h"
 #include "SpaceGame.h"
 
-FACTORY_REGISTER(Player)
+class RegisterPlayer 
+{
+public: 
+    RegisterPlayer() 
+    {
+        nu::Factory::Instance().Register<Player>("Player");
+    }
+}; 
+static RegisterPlayer registerInstance;
 
 using namespace nu;
 
