@@ -5,6 +5,7 @@
 #include "Assets.h"
 #include "SpaceGame.h"
 
+FACTORY_REGISTER(Player)
 
 using namespace nu;
 
@@ -64,10 +65,16 @@ void Player::Update(float dt)
 
 void Player::OnCollision(Actor* other)
 {
-    if (other->GetName() == "Enemy")
+    if (other->GetTag() == "Enemy")
     {
         SetDestroyed();
         ((SpaceGame*)m_scene->GetGame())->OnPlayerDead();
     }
 }
 
+void Player::Read(const nu::json::value_t& value)
+{
+    Actor::Read(value);
+
+    JSON_READ_NAME(value, "speed", m_speed);
+}

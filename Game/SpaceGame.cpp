@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "Assets.h"
 #include <memory>
+#include <iostream>
 
 
 using namespace nu;
@@ -15,6 +16,9 @@ bool SpaceGame::Initialize()
 	
 	m_scene = new Scene();
 	m_scene->SetGame(this);
+	m_scene->Load("");
+
+	
 
 	//m_titleFont = std::make_shared<Font>();
 
@@ -142,7 +146,11 @@ void SpaceGame::OnPlayerDead()
 
 void SpaceGame::SpawnPlayer()
 {
-	PlayerDesc playerDesc;
+		auto actor = Factory::Instance().Create<Actor>("playerPrototype");
+		//actor->SetPosition{}
+		m_scene->AddActor(std::move(actor));
+	
+	/*PlayerDesc playerDesc;
 	playerDesc.name = "Player";
 	playerDesc.texture = Resources().Get<Texture>("textures/spaceship_BLUE.png", Engine::Get().GetRenderer());
 	playerDesc.transform = Transform{ Vector2{ 640.0f, 512.0f}, 0.0f, 1.0f };
@@ -151,13 +159,17 @@ void SpaceGame::SpawnPlayer()
 	playerDesc.speed = 2000.0f;
 
 	std::unique_ptr<Player> player  = std::make_unique<Player>(playerDesc);
-	m_scene->AddActor(std::move(player));
+	m_scene->AddActor(std::move(player));*/
 }
 
 void SpaceGame::SpawnEnemy()
 {
-	EnemyDesc enemyDesc;
+	auto actor = Factory::Instance().Create<Actor>("EnemyPrototype");
+	actor->SetPosition({});
+
+	/*EnemyDesc enemyDesc;
 	enemyDesc.name = "Enemy";
+	enemyDesc.tag = "Enemy";
 	enemyDesc.texture = Resources().Get<Texture>("textures/spaceship_RED.png", Engine::Get().GetRenderer());
 	float x = nu::RandomFloat((float)Engine::Get().GetRenderer().GetWidth());
 	float y = nu::RandomFloat((float)Engine::Get().GetRenderer().GetHeight());
@@ -165,5 +177,5 @@ void SpaceGame::SpawnEnemy()
 	enemyDesc.damping = 3.0f;
 	enemyDesc.speed = 800.0f;
 
-	m_scene->AddActor(std::make_unique<Enemy>(enemyDesc));
+	m_scene->AddActor(std::make_unique<Enemy>(enemyDesc));*/
 }

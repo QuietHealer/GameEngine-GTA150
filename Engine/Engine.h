@@ -7,8 +7,10 @@
 #include "MathUtils.h"
 #include "File.h"
 #include "Texture.h"
+#include "StringUtils.h"
 
 #include "Text.h"
+#include "Factory.h"
 
 #include "Renderer.h"
 #include "Input.h"
@@ -18,11 +20,13 @@
 #include "ParticleSystem.h"
 
 #include "ResourceManager.h"
+#include "Components/RendererComponent.h"
 
 #include "Actor.h"
 #include "Scene.h"
 #include "Game.h"
 #include "fmod.hpp"
+#include "Object.h"
 
 
 #define ENGINE			Engine::Get()

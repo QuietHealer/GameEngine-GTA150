@@ -1,4 +1,4 @@
-#include "engine.h"
+#include "Engine.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Assets.h"
@@ -15,15 +15,15 @@
 
 using namespace nu;
 
-class Object
-{
-public:
-    Object() { std::cout << "constructor\n"; }
-    ~Object() { std::cout << "destructor\n"; }
-
-    Object(const Object& object) { std::cout << "copy\n"; }
-    Object& operator = (const Object& object) { std::cout << "assignment\n"; return *this; }
-};
+//class Object
+//{
+//public:
+//    Object() { std::cout << "constructor\n"; }
+//    ~Object() { std::cout << "destructor\n"; }
+//
+//    Object(const Object& object) { std::cout << "copy\n"; }
+//    Object& operator = (const Object& object) { std::cout << "assignment\n"; return *this; }
+//};
 
 uint32_t seed = 1234;
 
@@ -33,8 +33,97 @@ uint32_t RNG()
     return seed;
 }
 
+/*class ICreator
+{
+public:
+    virtual ~ICreator() = default;
+    virtual std::unique_ptr<Animal> Create() = 0;
+};
+
+template <typename T>
+class Creator : public ICreator
+{
+public:
+    std::unique_ptr<Animal> Create() override { return std::unique_ptr<T>(); }
+};
+
+
+std::map<std::string, std::unique_ptr<ICreator>> registry;*/
+
 int main()
 {
+    SetWorkingDirectory("assets");
+
+    // load the json data from a file
+    std::string buffer;
+    if (ReadTextFile("data/data.json", buffer))
+    {
+        // show the contents of the json file (debug)
+        std::cout << buffer << std::endl;
+
+        // create json document from the json file contents
+        rapidjson::Document document;
+        if (json::Load("data/data.json", document))
+        {
+            // read the age data (int) from the json
+            std::string name;
+            int age;
+            float speed;
+            bool isAwake;
+            nu::Vector2 position;
+            nu::Vector3 color;
+
+            // read the json data
+            nu::json::Read(document, "name", name);
+            nu::json::Read(document, "age", age);
+            nu::json::Read(document, "speed", speed);
+            nu::json::Read(document, "isAwake", isAwake);
+            nu::json::Read(document, "position", position);
+            nu::json::Read(document, "color", color);
+
+            std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
+            std::cout << position.x << " " << position.y << std::endl;
+            std::cout << color.r << " " << color.g << " " << color.b << " " << std::endl;
+
+        }
+        // read/show the data from the json file
+
+        // show the data
+
+    }
+
+
+    return 0;
+
+    //Factory::Instance().Register<Object>("Object");
+    //Factory::Instance().Register<Actor>("Actor");
+    //Factory::Instance().Register<Player>("Player");
+    //Factory::Instance().Register<Player>("Enmey");
+    //Factory::Instance().Register<Player>("Bullet");
+
+
+    auto actor = Factory::Instance().Create("Actor");
+    std::cout << actor->IsActive() << std::endl;
+
+    auto object = Factory::Instance().Create("Object");
+    std::cout << object->IsActive() << std::endl;
+
+    auto player = Factory::Instance().Create<Player>("Object");
+    std::cout << player->IsActive() << std::endl;
+
+    json::document_t document;
+    if (json::Load("data/scene.json", document))
+    {
+        player->Read(document);
+        std::cout << player->GetName() << std::endl;
+        std::cout << player->GetTag() << std::endl;
+
+        std::cout << player->GetTransform().rotation << std::endl;
+        std::cout << player->GetSpeed() << std::endl;
+    }
+
+    return 0;
+
     /*for (size_t i = 0; i < 10; i++) std::cout << RNG() << " ";
     std::cout << std::endl;
     for (size_t i = 0; i < 10; i++) std::cout << RNG() << " ";
@@ -159,7 +248,6 @@ int main()
 
     return 0;*/
 
-    SetWorkingDirectory("assets");
     
     /*{
         std::ifstream file("data/text.txt");

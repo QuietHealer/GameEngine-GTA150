@@ -1,4 +1,6 @@
 #pragma once
+#include "Object.h"
+#include "Component.h"
 #include "Transform.h"
 #include "Model.h"
 #include "Resource.h"
@@ -22,7 +24,7 @@ namespace nu
         res_t<Texture> texture;
     };
 
-    class Actor
+    class Actor : public Object
     {
     public:
         Actor() = default;
@@ -32,10 +34,12 @@ namespace nu
             m_transform{ actorDesc.transform },
             m_velocity{ actorDesc.velocity },
             m_damping{ actorDesc.damping },
-            m_lifespan{ actorDesc.lifespan},
-            m_model{ actorDesc.model },
-            m_texture{ actorDesc.texture }
+            m_lifespan{ actorDesc.lifespan}//,
+            //m_model{ actorDesc.model },
+            //m_texture{ actorDesc.texture }
         { }
+
+        CLASS_PROTOTYPE(Actor)
 
         virtual void Update(float dt);
         virtual void Draw(const class Renderer& renderer) const;
@@ -57,10 +61,12 @@ namespace nu
         Scene* GetScene() { return m_scene; }
 
         float GetRadius() const;
-        void SetModel(std::shared_ptr<Model> model) { m_model = model; }
+        //void SetModel(std::shared_ptr<Model> model) { m_model = model; }
 
         void SetDestroyed(bool destroyed = true) { m_destroyed = destroyed; }
         bool GetDestroyed() const { return m_destroyed; }
+
+        virtual void Read(const json::value_t& value) override;
 
         friend Scene;
     
@@ -76,6 +82,10 @@ namespace nu
 
         res_t<Model> m_model;
         res_t<Texture> m_texture;
+
+        std::vector<Component> m_component;
+
+
         Scene* m_scene{ nullptr };
     };
 }

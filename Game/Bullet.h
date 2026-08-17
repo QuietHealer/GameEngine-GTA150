@@ -16,6 +16,8 @@ public:
 	{
 	}
 
+	CLASS_PROTOTYPE(Bullet)
+
 	void Update(float dt) override;
 
 private:

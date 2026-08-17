@@ -1,5 +1,9 @@
 #include "Bullet.h"
 #include "MathUtils.h"
+#include "Factory.h"
+
+
+FACTORY_REGISTER(Bullet)
 
 void Bullet::Update(float dt)
 {
@@ -10,3 +14,5 @@ void Bullet::Update(float dt)
 
 	Actor::Update(dt);
 }
+
+

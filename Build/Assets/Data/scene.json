@@ -1,0 +1,55 @@
+{
+  "actors": [
+    {
+      "name": "PlayerPrototype",
+      "type": "Player",
+      "Prototype": true,
+      "tag": "Player",
+      "active": true,
+      "speed": 750.0,
+      "damping": 3,
+      "texture": "textures/spaceship_BLUE.png",
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "componets": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": ""
+        }
+      ]
+    },
+    {
+      "name": "EnemyPrototype",
+      "type": "Enemy",
+      "Prototype": true,
+      "tag": "Enemy",
+      "active": true,
+      "speed": 750.0,
+      "damping": 3,
+      "texture": "textures/spaceship_BLUE.png",
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": 0,
+        "scale": 1
+      }
+    },
+    {
+      "name": "BulletPrototype",
+      "type": "Bullet",
+      "Prototype": true,
+      "tag": "Bullet",
+      "active": true,
+      "speed": 750.0,
+      "damping": 3,
+      "texture": "textures/spaceship_BLUE.png",
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": 0,
+        "scale": 1
+      }
+    }
+  ]
+}
