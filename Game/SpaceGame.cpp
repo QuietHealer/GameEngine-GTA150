@@ -165,7 +165,9 @@ void SpaceGame::SpawnPlayer()
 void SpaceGame::SpawnEnemy()
 {
 	auto actor = Factory::Instance().Create<Actor>("EnemyPrototype");
-	actor->SetPosition({});
+	float x = nu::RandomFloat((float)Engine::Get().GetRenderer().GetWidth());
+	float y = nu::RandomFloat((float)Engine::Get().GetRenderer().GetHeight());
+	actor->SetTrasform(Transform{ Vector2{ x, y }, 90.0f, 1.0f });
 
 	/*EnemyDesc enemyDesc;
 	enemyDesc.name = "Enemy";
@@ -175,7 +177,7 @@ void SpaceGame::SpawnEnemy()
 	float y = nu::RandomFloat((float)Engine::Get().GetRenderer().GetHeight());
 	enemyDesc.transform = Transform{ Vector2{ x, y }, 90.0f, 1.0f };
 	enemyDesc.damping = 3.0f;
-	enemyDesc.speed = 800.0f;
+	enemyDesc.speed = 800.0f;*/
 
-	m_scene->AddActor(std::make_unique<Enemy>(enemyDesc));*/
+	m_scene->AddActor(std::move(actor));
 }

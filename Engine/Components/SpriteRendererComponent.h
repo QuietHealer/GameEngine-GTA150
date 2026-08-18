@@ -14,6 +14,6 @@ namespace nu
 		virtual void Read(const json::value_t& value) override;
 
 	private:
-		Texture* m_texture{ nullptr };
+		res_t<Texture> m_texture;
 	};
 }

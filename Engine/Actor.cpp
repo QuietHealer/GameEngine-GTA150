@@ -11,6 +11,20 @@ namespace nu
 {
     FACTORY_REGISTER(Actor)
 
+        Actor::Actor(const Actor& other) :
+        Object{ other},
+        m_tag{other.m_tag},
+        m_transform{other.m_transform},
+        m_damping{other.m_damping},
+        m_lifespan{other.m_lifespan}
+    {
+        for (const auto& component : other.m_components)
+        {
+            auto clone = std::unique_ptr<Component>(dynamic_cast<Component*>(component->Clone().release()));
+            ADDComponent(std::move(clone));
+        }
+    }
+
     void Actor::Update(float dt)
     {
         if (m_lifespan > 0.0f)
@@ -19,12 +33,12 @@ namespace nu
             m_destroyed = (m_lifespan <= 0.0f);
         }
 
-        for (auto component : m_component)
+        for (auto& component : m_components)
         {
             component->Update(dt);
         }
 
-        // ph
+        // phy
         m_transform.position += (m_velocity * dt);
         m_velocity *= 1.0f / ((1.0f) + m_damping * dt);
 
@@ -34,11 +48,13 @@ namespace nu
 
     void Actor::Draw(const Renderer& renderer) const
     {
-        for (auto component : m_component)
+        for (auto& component : m_components)
         {
-            auto rendererComponent = dynamic_cast<RendererComponent*>(component);
-
-            rendererComponent->Draw(renderer);
+            auto rendererComponent = dynamic_cast<RendererComponent*>(component.get());
+            if (rendererComponent)
+            {
+                rendererComponent->Draw(renderer);
+            }
         }
 
     }
@@ -74,15 +90,19 @@ namespace nu
                 JSON_READ_NAME(componentValue, "type", typeName);
 
                 auto component = Factory::Instance().Create<Component>(typeName);
-                component->Read(componentValue);
-
                 if (component)
                 {
-                    //
+                    component->Read(componentValue);
+                    ADDComponent(std::move(component));
                 }
 
 
             }
         }
+    }
+    void Actor::ADDComponent(std::unique_ptr<Component> component)
+    {
+        component->SetOwner(this);
+        m_components.push_back(std::move(component));
     }
 }

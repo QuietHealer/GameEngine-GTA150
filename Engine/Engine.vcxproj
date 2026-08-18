@@ -205,6 +205,9 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="Components\CircleColliderComponent.cpp" />
+    <ClInclude Include="Components\CircleColliderComponent.h" />
+    <ClInclude Include="Components\ColliderComponent.h" />
     <ClCompile Include="Components\SpriteRendererComponent.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -225,6 +228,9 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

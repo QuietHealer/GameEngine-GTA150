@@ -49,7 +49,14 @@ void Player::Update(float dt)
     {
         nu::Engine::Get().GetAudio().PlaySound("laser");
 
-        BulletDesc desc;
+        auto bullet = nu::Factory::Instance().Create<Bullet>("BulletPrototype");
+        bullet->SetTrasform(m_transform);
+        bullet->SetScale(2.0f);
+        bullet->SetTag("PlayerBullet");
+
+        m_scene->AddActor(std::move(bullet));
+
+       /* BulletDesc desc;
         desc.name = "Bullet";
         desc.tag = "PlayerBullet";
         desc.texture = Resources().Get<Texture>("textures/bullet.png", Engine::Get().GetRenderer());
@@ -57,7 +64,7 @@ void Player::Update(float dt)
         desc.speed = 1000.0f;
         desc.lifespan = 1.0f;
                 
-        m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));
+        m_scene->AddActor(std::move(std::make_unique<Bullet>(desc)));*/
     }
     if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_X))
     {

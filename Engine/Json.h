@@ -10,6 +10,9 @@
 #define JSON_READ(value, data) nu::json::Read(value, #data, data)
 #define JSON_READ_NAME(value, name, data) nu::json::Read(value, name, data)
 
+#define JSON_READ_REQ(value, data) nu::json::Read(value, #data, data. true)
+#define JSON_READ_NAME_REQ(value, name, data) nu::json::Read(value, name, data, true)
+
 #define JSON_HAS_NAME(value, name) value.HasMember(name)
 #define JSON_HAS(value, data) value.HasMember(#data)
 

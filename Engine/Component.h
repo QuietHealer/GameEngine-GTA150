@@ -3,6 +3,8 @@
 
 namespace nu
 {
+	class Actor;
+
 	class Component : public Object
 	{
 	
@@ -15,8 +17,10 @@ namespace nu
 
 		virtual void Update(float dt) {}
 
-		class Actor* GetOwner() { return m_owner; }
+		void SetOwner(Actor* owner) { m_owner = owner; }
+		Actor* GetOwner() const { return m_owner; }
+
 	protected:
-		class Actor* m_owner = nullptr;
+		Actor* m_owner = nullptr;
 	};
 }

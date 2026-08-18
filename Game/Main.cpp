@@ -95,7 +95,7 @@ int main()
 
 
 
-    Factory::Instance().Register<Object>("Object");
+    /*Factory::Instance().Register<Object>("Object");
     //Factory::Instance().Register<Actor>("Actor");
     //Factory::Instance().Register<Player>("Player");
     //Factory::Instance().Register<Player>("Enmey");
@@ -122,7 +122,7 @@ int main()
         std::cout << player->GetSpeed() << std::endl;
     }
 
-    return 0;
+    return 0;*/
 
     /*for (size_t i = 0; i < 10; i++) std::cout << RNG() << " ";
     std::cout << std::endl;
