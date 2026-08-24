@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Random.h"
-#include "Vector2.h"
-#include "Vector3.h"
-#include "Transform.h"
-#include "MathUtils.h"
+#include "Math/Vector2.h"
+#include "Math/Vector3.h"
+#include "Math/Transform.h"
+#include "Math/MathUtils.h"
 #include "File.h"
 #include "Texture.h"
 #include "StringUtils.h"
@@ -27,6 +27,7 @@
 #include "Game.h"
 #include "fmod.hpp"
 #include "Object.h"
+#include "Physics/Physcs.h"
 
 
 #define ENGINE			Engine::Get()
@@ -52,6 +53,7 @@ namespace nu
 		Engine& operator = (const Engine&) = delete;
 
 		Audio& GetAudio() { return m_audio; }
+		Physics& GetPhysics() { return m_physics; }
 
 	private:
 		Engine() = default;
@@ -63,6 +65,7 @@ namespace nu
 		Audio m_audio;
 		ParticleSystem m_particleSystem;
 		Time m_time;
+		Physics m_physics;
 	};
 }
 

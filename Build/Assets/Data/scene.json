@@ -1,6 +1,23 @@
 {
   "actors": [
     {
+      "type": "Actor",
+      "prototype": "Bat",
+      "tag": "Enemy",
+      "active": true,
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "SpriteRendererComponent",
+          "texture": "textures/bat.png"
+        }
+      ]
+    },
+    {
       "name": "PlayerPrototype",
       "type": "Player",
       "prototype": true,
@@ -20,7 +37,7 @@
         },
         {
           "type": "CircleColliderComponent",
-          "radius":  32
+          "radius": 32
         }
       ]
     },
@@ -37,7 +54,7 @@
         "rotation": 0,
         "scale": 1
       },
-      "components":[
+      "components": [
         {
           "type": "SpriteRendererComponent",
           "texture": "textures/spaceship_RED.png"
@@ -48,7 +65,7 @@
         }
       ]
     },
-    
+
     {
       "name": "BulletPrototype",
       "type": "Bullet",
@@ -62,7 +79,7 @@
         "rotation": 0,
         "scale": 1
       },
-      "components":[
+      "components": [
         {
           "type": "SpriteRendererComponent",
           "texture": "textures/bullet.png"
