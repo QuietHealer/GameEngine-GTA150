@@ -2,8 +2,8 @@
 #include "Object.h"
 #include "Component.h"
 #include "Math/Transform.h"
-#include "Model.h"
-#include "Resource.h"
+#include "Renderer/Model.h"
+#include "Resources/Resource.h"
 #include <string>
 #include <memory>
 
@@ -16,8 +16,6 @@ namespace nu
     {
         std::string tag;
         Transform transform{};
-        Vector2 velocity{ 0.0f, 0.0f };
-        float damping{ 0.0f };
         float lifespan{ 0 };
         res_t<Model> model;
         res_t<Texture> texture;
@@ -30,11 +28,7 @@ namespace nu
         Actor(const ActorDesc& actorDesc) :
             m_tag{ actorDesc.tag },
             m_transform{ actorDesc.transform },
-            m_velocity{ actorDesc.velocity },
-            m_damping{ actorDesc.damping },
-            m_lifespan{ actorDesc.lifespan}//,
-            //m_model{ actorDesc.model },
-            //m_texture{ actorDesc.texture }
+            m_lifespan{ actorDesc.lifespan}
         { }
 
         Actor(const Actor& other);
@@ -44,6 +38,9 @@ namespace nu
         virtual void Update(float dt);
         virtual void Draw(const class Renderer& renderer) const;
 
+        virtual void Start();
+        virtual void OnDestroy();
+
         virtual void OnCollision(Actor* other) {}
 
         const Transform& GetTransform() const { return m_transform; }
@@ -51,10 +48,6 @@ namespace nu
         void SetPosition(const Vector2& position) { m_transform.position = position; }
         void SetRotation(float rotation) { m_transform.rotation = rotation; }
         void SetScale(float scale) { m_transform.scale = scale; }
-
-        void SetVelocity(const Vector2& velocity) { m_velocity = velocity; }
-        void AddVelocity(const Vector2& velocity) { m_velocity += velocity; }
-        const Vector2& GetVelocity() const { return m_velocity; }
 
         const std::string& GetName() const { return m_name; }
         void SetTag(const std::string& tag) { m_tag = tag; }
@@ -79,17 +72,15 @@ namespace nu
     
     protected:
         std::string m_tag;
-        float m_damping;
         float m_lifespan;
         bool m_destroyed = false;
 
         Transform m_transform;
-        Vector2 m_velocity{ 0, 0 };
         std::vector<std::unique_ptr<Component>> m_components;
-
 
         Scene* m_scene{ nullptr };
     };
+
     template<std::derived_from<Component> T>
     inline T* Actor::GetComponent()
     {

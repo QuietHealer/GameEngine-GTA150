@@ -27,6 +27,7 @@ namespace nu::json
 	bool Load(const std::string& filename, document_t& document);
 
 	bool Read(const value_t& value, const std::string& name, int& data, bool required = false);
+	bool Read(const value_t& value, const std::string& name, unsigned int& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, float& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, bool& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, std::string& data, bool required = false);

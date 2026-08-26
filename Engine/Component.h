@@ -1,5 +1,5 @@
 #pragma once
-#include "Object.h"
+#include "Framework/Object.h"
 
 namespace nu
 {
@@ -14,6 +14,7 @@ namespace nu
 
 		virtual void Start() {}
 		virtual void Destroyed() {}
+		virtual void OnDestroy() {}
 
 		virtual void Update(float dt) {}
 
