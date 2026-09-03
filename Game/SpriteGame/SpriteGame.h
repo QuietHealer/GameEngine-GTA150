@@ -16,8 +16,8 @@ class SpriteGame : public nu::Game
 
 public:
 	SpriteGame() = default;
-	SpriteGame(nu::Scene* scene) :
-		Game{scene}
+	SpriteGame(std::unique_ptr<nu::Scene> scene) :
+		Game{ std::move(scene) }
 	{ }
 
 	bool Initialize() override;

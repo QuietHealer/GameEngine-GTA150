@@ -155,7 +155,7 @@ int main()
     students["Aiden"] = 16;
     students["Jack"] = 17;
     students["River"] = 15;
-        
+
     std::cout << students["Aiden"] << std::endl;
 
     // get current working directory
@@ -248,14 +248,14 @@ int main()
 
     return 0;*/
 
-    
+
     /*{
         std::ifstream file("data/text.txt");
         if (file.is_open())
         {
             std::string str;
             while (std::getline(file, str))
-            {  
+            {
                 std::cout << str << std::endl;
             }
         }
@@ -326,15 +326,16 @@ int main()
             }
     }
 
-    
+
 
     return 0;*/
 
     // INITALIZATION
     Engine::Get().Initialize();
 
-    SpaceGame game;
-    game.Initialize();
+    std::unique_ptr game = std::make_unique<SpaceGame>();
+
+    game->Initialize();
 
     // create audio system
     FMOD::System* audio;
@@ -376,7 +377,7 @@ int main()
 
         float dt = Engine::Get().GetTime().GetDeltaTime();
 
-        game.Update(dt);
+        game->Update(dt);
         audio->update();
 
         // DRAW
@@ -384,11 +385,12 @@ int main()
         Engine::Get().GetRenderer().Clear();
 
         
-        game.Draw(Engine::Get().GetRenderer());
+        game->Draw(Engine::Get().GetRenderer());
         Engine::Get().GetPS().Draw(Engine::Get().GetRenderer());
 
         Engine::Get().GetRenderer().Present();
     }
+    game.reset();
 
     Engine::Get().Shutdown();
     

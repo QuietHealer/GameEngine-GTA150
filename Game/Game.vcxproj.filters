@@ -89,13 +89,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Build\Assets\Data\scene.json">
-      <Filter>Resource Files</Filter>
+    <None Include="..\Build\Assets\SpaceGame\Data\scene.json">
+      <Filter>Assets</Filter>
     </None>
-    <None Include="..\Build\Assets\Tilemaps\world.json">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\Build\Assets\Animation\bat_idle.json">
+    <None Include="..\Build\Assets\SpaceGame\Tilemaps\world.json">
       <Filter>Assets</Filter>
     </None>
   </ItemGroup>

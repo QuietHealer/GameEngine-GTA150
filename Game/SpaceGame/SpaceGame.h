@@ -16,8 +16,8 @@ class SpaceGame : public nu::Game
 
 public:
 	SpaceGame() = default;
-	SpaceGame(nu::Scene* scene) :
-		Game{scene}
+	SpaceGame(std::unique_ptr<nu::Scene> scene) :
+		Game{ std::move(scene) }
 	{ }
 
 	bool Initialize() override;
