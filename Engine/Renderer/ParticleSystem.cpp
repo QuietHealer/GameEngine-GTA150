@@ -42,8 +42,6 @@ namespace nu
 			if (particle.active)
 			{
 				// set particle color and draw point at current position
-				// TODO: set color with particle color
-				// TODO: draw point with particle position
 				renderer.SetColor(particle.color.r, particle.color.g, particle.color.b);
 				renderer.DrawPoint(particle.position.x, particle.position.y);
 			}

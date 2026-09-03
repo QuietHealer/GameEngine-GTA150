@@ -2,10 +2,11 @@
 #include "TextureFrames.h"
 #include "Serialization/Json.h"
 #include "Texture.h"
+#include "Renderer.h"
 
 namespace nu
 {
-	bool TextureFrames::Load(const std::string& filename, class Renderer& renderer)
+	bool TextureFrames::Load(const std::string& filename, Renderer& renderer)
 	{
 		json::document_t document;
 
@@ -42,7 +43,7 @@ namespace nu
 		}
 
 		Vector2 textureSize = m_texture->GetSize();
-		//m_frameSize = textureSize / Vector2{ static_cast<float>m_numColumns, (float)m_numRows };
+		m_frameSize = textureSize / Vector2{ static_cast<float>(m_numColumns), (float)(m_numRows) };
 
 		return true;
 	}

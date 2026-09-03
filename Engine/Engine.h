@@ -58,7 +58,6 @@ namespace nu
 	private:
 		Engine() = default;
 
-
 	private:
 		Input m_input;
 		Renderer m_renderer;

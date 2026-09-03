@@ -10,7 +10,7 @@
 #define JSON_READ(value, data) nu::json::Read(value, #data, data)
 #define JSON_READ_NAME(value, name, data) nu::json::Read(value, name, data)
 
-#define JSON_READ_REQ(value, data) nu::json::Read(value, #data, data. true)
+#define JSON_READ_REQ(value, data) nu::json::Read(value, #data, data, true)
 #define JSON_READ_NAME_REQ(value, name, data) nu::json::Read(value, name, data, true)
 
 #define JSON_HAS_NAME(value, name) value.HasMember(name)
@@ -33,4 +33,5 @@ namespace nu::json
 	bool Read(const value_t& value, const std::string& name, std::string& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, struct Vector2& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, struct Vector3& data, bool required = false);
+	bool Read(const value_t& value, const std::string& name, std::vector<int>& data, bool required = false);
 }

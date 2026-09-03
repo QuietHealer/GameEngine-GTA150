@@ -52,10 +52,6 @@ namespace nu
         {
             component->Update(dt);
         }
-
-        // phy
-
-        
     }
 
     void Actor::Draw(const Renderer& renderer) const

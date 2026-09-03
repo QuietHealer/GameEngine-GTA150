@@ -3,7 +3,7 @@
 #include "Engine.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "Assets.h"
+//#include "Assets.h"
 #include <memory>
 #include <iostream>
 
@@ -16,7 +16,7 @@ bool SpaceGame::Initialize()
 	
 	m_scene = new Scene();
 	m_scene->SetGame(this);
-	m_scene->Load("");
+	m_scene->Load("data/scene.json");
 
 	
 
@@ -108,8 +108,7 @@ void SpaceGame::Update(float dt)
 
 void SpaceGame::Draw(Renderer& renderer)
 {
-		renderer.DrawTexture(*Resources().Get<Texture>("textures/Wallpaper.jpg", Engine::Get().GetRenderer()), 1024.0f, 540.0f);
-	//Engine::Get().GetRenderer().DrawTexture(*Resources().Get<Texture>("textures/spaceship_BLUE.png", Engine::Get().GetRenderer()), 0.0f, 0.0f);
+	renderer.DrawTexture(*Resources().Get<Texture>("textures/Wallpaper.jpg", Engine::Get().GetRenderer()), 1024.0f, 540.0f);
 	switch (m_gameState)
 	{
 	case GameState::Title:
@@ -146,9 +145,9 @@ void SpaceGame::OnPlayerDead()
 
 void SpaceGame::SpawnPlayer()
 {
-		auto actor = Factory::Instance().Create<Actor>("PlayerPrototype");
-		//actor->SetPosition{}
-		m_scene->AddActor(std::move(actor));
+	auto actor = Factory::Instance().Create<Actor>("PlayerPrototype");
+	//actor->SetPosition{}
+	m_scene->AddActor(std::move(actor));
 	
 	/*PlayerDesc playerDesc;
 	playerDesc.name = "Player";

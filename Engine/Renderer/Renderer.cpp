@@ -36,28 +36,33 @@ namespace nu
             return false;
             // hi
         }
+
+        SDL_SetDefaultTextureScaleMode(m_renderer, SDL_SCALEMODE_PIXELART);
         SDL_SetRenderVSync(m_renderer, 1);
-
-
 
         return true;
     }
+
     void Renderer::SetColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a) const
     {
         SDL_SetRenderDrawColor(m_renderer, r, g, b, a);
     }
+
     void Renderer::SetColor(float r, float g, float b, float a) const
     {
         SDL_SetRenderDrawColorFloat(m_renderer, r, g, b, a);
     }
+
     void Renderer::Clear()
     {
         SDL_RenderClear(m_renderer);
     }
+
     void Renderer::Present()
     {
         SDL_RenderPresent(m_renderer);
     }
+
     void Renderer::Shutdown()
     {
         TTF_Quit();
@@ -65,16 +70,18 @@ namespace nu
         SDL_DestroyWindow(m_window);
         SDL_Quit();
     }
+
     void Renderer::DrawPoint(float x, float y) const
     {
         SDL_RenderPoint(m_renderer, x, y);
     }
+
     void Renderer::DrawFillRect(float x, float y, float w, float h) const
     {
         SDL_FRect rect{ x, y, w, h };
         SDL_RenderFillRect(m_renderer, &rect);
-
     }
+
     void Renderer::DrawRect(float x, float y, float w, float h) const
     {
         SDL_FRect rect{ x, y, w, h };
@@ -85,6 +92,7 @@ namespace nu
     {
         SDL_RenderLine(m_renderer, x1, y1, x2, y2);
     }
+
     void Renderer::DrawModel(const Model& model, const Transform& transform) const
     {
 
@@ -115,7 +123,7 @@ namespace nu
 
     }
 
-    void Renderer::DrawTexture(const Texture& texture, float x, float y, float angle, float scale, bool flipH) const
+    void Renderer::DrawTexture(const class Texture& texture, float x, float y, float angle, float scale, bool flipH, const Vector2& origin) const
     {
         Vector2 size = texture.GetSize();
 
@@ -123,13 +131,14 @@ namespace nu
         destRect.w = size.x * scale;
         destRect.h = size.y * scale;
 
-        destRect.x = x - (destRect.w * 0.5f);
-        destRect.y = y - (destRect.h * 0.5f);
+        destRect.x = x - (destRect.w * origin.x);
+        destRect.y = y - (destRect.h * origin.y);
 
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, NULL, &destRect, angle, NULL, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);
     }
-    void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipH) const
+
+    void Renderer::DrawTexture(const Texture& texture, const Rect& source, float x, float y, float angle, float scale, bool flipH, const Vector2& origin) const
     {
         SDL_FRect sourceRect;
         sourceRect.x = source.x;
@@ -141,8 +150,8 @@ namespace nu
         destRect.w = source.w * scale;
         destRect.h = source.h * scale;
 
-        destRect.x = x - (destRect.w * 0.5f);
-        destRect.y = y - (destRect.h * 0.5f);
+        destRect.x = x - (destRect.w * origin.x);
+        destRect.y = y - (destRect.h * origin.y);
 
         // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
         SDL_RenderTextureRotated(m_renderer, texture.m_texture, &sourceRect, &destRect, angle, NULL, (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE);

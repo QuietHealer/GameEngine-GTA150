@@ -28,7 +28,6 @@ namespace nu
 			return false;
 
 		// insert sound into map
-		//TODO: add sound to m_sounds using name as key
 		m_sounds[name] = sound;
 
 		return true;

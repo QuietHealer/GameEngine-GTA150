@@ -60,6 +60,8 @@ namespace nu
 
         void SetDestroyed(bool destroyed = true) { m_destroyed = destroyed; }
         bool GetDestroyed() const { return m_destroyed; }
+        
+        bool GetPersistent() { return m_persistent; }
 
         virtual void Read(const json::value_t& value) override;
 
@@ -74,6 +76,7 @@ namespace nu
         std::string m_tag;
         float m_lifespan;
         bool m_destroyed = false;
+        bool m_persistent{ false };
 
         Transform m_transform;
         std::vector<std::unique_ptr<Component>> m_components;
@@ -86,10 +89,10 @@ namespace nu
     {
         for (auto& component : m_components)
         {
-            auto resulet = dynamic_cast<T*>(component.get());
-            if (resulet)
+            auto result = dynamic_cast<T*>(component.get());
+            if (result)
             {
-
+                return result;
             }
         }
 

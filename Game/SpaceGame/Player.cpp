@@ -3,7 +3,7 @@
 #include "Components/PhysicsComponent.h"
 #include "Engine.h"
 #include "Bullet.h"
-#include "Assets.h"
+//#include "Assets.h"
 #include "SpaceGame.h"
 
 class RegisterPlayer 

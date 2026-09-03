@@ -28,10 +28,9 @@ namespace nu
 		return upper;
 	}
 
-	inline bool EqualsIngnoreCase(const std::string& str1, const std::string& str2)
+	inline bool EqualsIgnoreCase(const std::string& str1, const std::string& str2)
 	{
-		if (str1.size() != str2.size())
-
+		
 		return ToLower(str1) == ToLower(str2);
 	}
 }

@@ -1,8 +1,8 @@
 #include "Engine.h"
-#include "Player.h"
-#include "Enemy.h"
+#include "SpaceGame/Player.h"
+#include "SpaceGame/Enemy.h"
 #include "Assets.h"
-#include "SpaceGame.h"
+#include "SpaceGame/SpaceGame.h"
 
 #include <iostream>
 #include <vector>
@@ -52,7 +52,7 @@ std::map<std::string, std::unique_ptr<ICreator>> registry;*/
 
 int main()
 {
-    SetWorkingDirectory("assets");
+    SetWorkingDirectory("Assets");
 
     // load the json data from a file
     /*std::string buffer;

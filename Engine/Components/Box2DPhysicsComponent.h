@@ -29,7 +29,7 @@ namespace nu
 		Vector2 GetPosition() const override;
 
 		void SetRotation(float rotation) override;
-		float GetRotation() override;
+		float GetRotation() const override;
 
 	private:
 		Vector2 m_size{ 0,0 };
