@@ -1,14 +1,14 @@
-#include "PlayerController.h"
+#include "FlyingEnemyController.h"
 #include "Components/PhysicsComponent.h"
 #include "Components/SpriteAnimatorRendererComponent.h"
 #include "Core/Factory.h"
-#include "Framework/Scene.h"
 #include "Engine.h"
+#include "Framework/Scene.h"
 #include "Damager.h"
 
-FACTORY_REGISTER(PlayerController)
+FACTORY_REGISTER(FlyingEnemyController)
 
-void PlayerController::Start()
+void FlyingEnemyController::Start()
 {
 	CharacterBase::Start();
 
@@ -18,7 +18,7 @@ void PlayerController::Start()
 	assert(m_rendererComponent);
 }
 
-void PlayerController::Update(float dt)
+void FlyingEnemyController::Update(float dt)
 {
 	nu::Vector2 velocity = m_physicsComponent->GetVelocity();
 
@@ -26,31 +26,23 @@ void PlayerController::Update(float dt)
 	{
 	case CharacterBase::State::Move:
 	{
-		float dir = 0.0f;
-		if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_A)) dir = -1.0f;
-		if (nu::Engine::Get().GetInput().GetKeyDown(SDL_SCANCODE_D)) dir = +1.0f;
-		if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE))
+		auto player = m_scene->GetActorByName<Actor>("PlayerPrototype");
+		if (player)
 		{
-			velocity.y = -800.0f;
-		}
-		if (dir != 0.0f)
-		{
-			velocity.x = dir * 100.0f;
-			m_rendererComponent->Play("run");
-			m_rendererComponent->SetFlipH(dir < 0.0f);
-		}
-		else
-		{
-			m_rendererComponent->Play("idle");
-		}
+			nu::Vector2 position = GetTransform().position;
+			nu::Vector2 playerPosition = player->GetTransform().position;
+			nu::Vector2 direction = playerPosition - position;
 
-		if (nu::Engine::Get().GetInput().GetKeyPressed(SDL_SCANCODE_RCTRL))
-		{
-			m_state = State::Attack;
-			m_rendererComponent->Play("attack");
-			m_hasAttacked = false;
-			
+			m_rendererComponent->SetFlipH(direction.x < 0.0f);
 
+			if (direction.Length() < 100.0f)
+			{
+				m_state = State::Attack;
+				m_hasAttacked = false;
+				m_rendererComponent->Play("Attack");
+			}
+
+			m_physicsComponent->ApplyForce(direction.Normalized() * 800.0f);
 		}
 	}
 		break;
@@ -58,11 +50,11 @@ void PlayerController::Update(float dt)
 		if (m_hasAttacked == false && m_rendererComponent->GetFrame() == 3)
 		{
 			m_hasAttacked = true;
-			auto damager = nu::Factory::Instance().Create<nu::Actor>("DamagerPrototype");
-			damager->SetPosition(GetTransform().position + nu::Vector2{ (m_rendererComponent->GetFlipH()) ? -90.0f : 20.0f, -30.0f });
-			damager->SetScale(1.0f);
-			damager->SetTag("PlayerDamager");
-
+			auto damager = nu::Factory::Instance().Create<Damager>("DamagerPrototype");
+			damager->SetDamage(3.0f);
+			damager->SetPosition(GetTransform().position);
+			damager->SetScale(3.0f);
+			damager->SetTag("EnemyDamager");
 			m_scene->AddActor(std::move(damager));
 		}
 		if (m_rendererComponent->IsAnimationDone())
@@ -72,13 +64,11 @@ void PlayerController::Update(float dt)
 		}
 		break;
 	case CharacterBase::State::Hit:
-	{
 		if (m_rendererComponent->IsAnimationDone())
 		{
 			m_state = State::Move;
 			m_rendererComponent->Play("idle");
 		}
-	}
 		break;
 	case CharacterBase::State::Death:
 		break;
@@ -86,19 +76,16 @@ void PlayerController::Update(float dt)
 		break;
 	}
 
-	m_physicsComponent->SetVelocity(velocity);
-
-
 	CharacterBase::Update(dt);
 }
 
-void PlayerController::OnCollision(nu::Actor* other)
+void FlyingEnemyController::OnCollision(nu::Actor* other)
 {
-	if (nu::EqualsIgnoreCase(other->GetTag(), "EnemyDamager"))
+	if (nu::EqualsIgnoreCase(other->GetTag(), "PlayerDamager"))
 	{
 		// hit enemy
 		m_state = State::Hit;
-		m_rendererComponent->Play("idle");
+		m_rendererComponent->Play("hit");
 		Damager* damager = dynamic_cast<Damager*>(other);
 		if (damager)
 		{
@@ -112,10 +99,9 @@ void PlayerController::OnCollision(nu::Actor* other)
 		// remove damager
 		other->SetDestroyed();
 	}
-
 }
 
-void PlayerController::Read(const nu::json::value_t& value)
+void FlyingEnemyController::Read(const nu::json::value_t& value)
 {
 	CharacterBase::Read(value);
 }

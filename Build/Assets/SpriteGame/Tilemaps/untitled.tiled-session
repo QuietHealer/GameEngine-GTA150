@@ -1,6 +1,7 @@
 {
     "activeFile": "world.json",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
         "groud.tsx": {
@@ -8,29 +9,30 @@
             "scaleInEditor": 1
         },
         "world.json": {
-            "scale": 1.5378124999999998,
+            "scale": 0.5029747596153846,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 273.76549481812646,
-                "y": 160.2926234505182
+                "x": 831.0556186152099,
+                "y": 511.9541191230061
             }
         }
     },
     "last.exportedFilePath": "C:/workspace/Demos/GAT150/GameEngine/Build/Assets/Tilemaps",
     "last.imagePath": "C:/workspace/Demos/GAT150/GameEngine/Build/Assets/Textures",
+    "map.height": 64,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "json",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
+    "map.width": 104,
     "openFiles": [
-        "groud.tsx",
         "world.json"
     ],
     "project": "untitled.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "groud.tsx",
-        "world.json"
+        "world.json",
+        "groud.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

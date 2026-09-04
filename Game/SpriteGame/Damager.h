@@ -8,9 +8,9 @@ public:
 
 	void Read(const nu::json::value_t& value) override;
 
-	void SetDamade(float damage) { m_damage = damage; }
-	float GetDamage() { return m_damage; }
+	void SetDamage(float damage) { m_damage = damage; }
+	float GetDamage() const { return m_damage; }
 
 protected:
-	float m_damage = 0.0f;
+	float m_damage{ 1.0f };
 };

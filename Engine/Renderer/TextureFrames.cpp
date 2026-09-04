@@ -34,7 +34,7 @@ namespace nu
 		JSON_READ_NAME(document, "columns", m_numColumns);
 		JSON_READ_NAME(document, "rows", m_numRows);
 		JSON_READ_NAME(document, "start_frame", m_startFrame);
-		JSON_READ_NAME(document, "totalFrames", m_totalFrames);
+		JSON_READ_NAME(document, "total_frames", m_totalFrames);
 
 		if (m_numColumns <= 0 || m_numRows <= 0)
 		{

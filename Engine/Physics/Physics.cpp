@@ -40,10 +40,10 @@ namespace nu
 			b2BodyId bodyB = b2Shape_GetBody(contactEvent->shapeIdB);
 
 			Actor* actorA = (Actor*)b2Body_GetUserData(bodyA);
-			if (actorA == nullptr || actorA->GetDestroyed() || actorA->IsActive()) continue;
+			if (actorA == nullptr || actorA->GetDestroyed() || !actorA->IsActive()) continue;
 
 			Actor* actorB = (Actor*)b2Body_GetUserData(bodyB);
-			if (actorB == nullptr || actorB->GetDestroyed() || actorB->IsActive()) continue;
+			if (actorB == nullptr || actorB->GetDestroyed() || !actorB->IsActive()) continue;
 
 			actorA->OnCollision(actorB);
 			actorB->OnCollision(actorA);
@@ -60,10 +60,10 @@ namespace nu
 			b2BodyId bodyB = b2Shape_GetBody(SensorEvent->visitorShapeId);
 
 			Actor* actorA = (Actor*)b2Body_GetUserData(bodyA);
-			if (actorA == nullptr || actorA->GetDestroyed() || actorA->IsActive()) continue;
+			if (actorA == nullptr || actorA->GetDestroyed() || !actorA->IsActive()) continue;
 
 			Actor* actorB = (Actor*)b2Body_GetUserData(bodyB);
-			if (actorB == nullptr || actorB->GetDestroyed() || actorB->IsActive()) continue;
+			if (actorB == nullptr || actorB->GetDestroyed() || !actorB->IsActive()) continue;
 
 			actorA->OnCollision(actorB);
 			actorB->OnCollision(actorA);

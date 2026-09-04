@@ -22,22 +22,13 @@
     <Filter Include="SpaceGame">
       <UniqueIdentifier>{c31d1085-29df-4223-b246-78d767f38fd4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SpriteGame\SpriteAssets">
+      <UniqueIdentifier>{ace2b908-4b0b-4bbd-9ef7-89edf9a6fc3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteGame\PlayerController.cpp">
-      <Filter>SpriteGame</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteGame\EnemyController.cpp">
-      <Filter>SpriteGame</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteGame\Damager.cpp">
-      <Filter>SpriteGame</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteGame\CharacterBase.cpp">
-      <Filter>SpriteGame</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SpaceGame\Bullet.cpp">
@@ -55,22 +46,25 @@
     <ClCompile Include="SpriteGame\SpriteGame.cpp">
       <Filter>SpriteGame</Filter>
     </ClCompile>
+    <ClCompile Include="SpriteGame\EnemyController.cpp">
+      <Filter>SpriteGame</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteGame\FlyingEnemyController.cpp">
+      <Filter>SpriteGame</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteGame\PlayerController.cpp">
+      <Filter>SpriteGame</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteGame\CharacterBase.cpp">
+      <Filter>SpriteGame</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteGame\Damager.cpp">
+      <Filter>SpriteGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteGame\PlayerController.h">
-      <Filter>SpriteGame</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteGame\EnemyController.h">
-      <Filter>SpriteGame</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteGame\CharacterBase.h">
-      <Filter>SpriteGame</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteGame\Damager.h">
-      <Filter>SpriteGame</Filter>
     </ClInclude>
     <ClInclude Include="SpaceGame\Bullet.h">
       <Filter>SpaceGame</Filter>
@@ -87,6 +81,21 @@
     <ClInclude Include="SpriteGame\SpriteGame.h">
       <Filter>SpriteGame</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteGame\EnemyController.h">
+      <Filter>SpriteGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteGame\FlyingEnemyController.h">
+      <Filter>SpriteGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteGame\PlayerController.h">
+      <Filter>SpriteGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteGame\CharacterBase.h">
+      <Filter>SpriteGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteGame\Damager.h">
+      <Filter>SpriteGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Build\Assets\SpaceGame\Data\scene.json">
@@ -94,6 +103,15 @@
     </None>
     <None Include="..\Build\Assets\SpaceGame\Tilemaps\world.json">
       <Filter>Assets</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Data\scene.json">
+      <Filter>SpriteGame\SpriteAssets</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Tilemaps\level.json">
+      <Filter>SpriteGame\SpriteAssets</Filter>
+    </None>
+    <None Include="..\Build\Assets\SpriteGame\Tilemaps\world.json">
+      <Filter>SpriteGame\SpriteAssets</Filter>
     </None>
   </ItemGroup>
 </Project>

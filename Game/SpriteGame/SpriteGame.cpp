@@ -165,7 +165,7 @@ void SpriteGame::SpawnEnemy()
 	auto actor = Factory::Instance().Create<Actor>("EnemyPrototype");
 	float x = nu::RandomFloat((float)Engine::Get().GetRenderer().GetWidth());
 	float y = nu::RandomFloat((float)Engine::Get().GetRenderer().GetHeight());
-	actor->SetTrasform(Transform{ Vector2{ x, y }, 90.0f, 1.0f });
+	actor->SetTrasform(Transform{ Vector2{ x, y }, 0.0f, 1.0f });
 
 	/*EnemyDesc enemyDesc;
 	enemyDesc.name = "Enemy";

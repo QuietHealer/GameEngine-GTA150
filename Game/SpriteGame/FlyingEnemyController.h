@@ -8,10 +8,10 @@ namespace nu
 }
 
 
-class EnemyController : public CharacterBase
+class FlyingEnemyController : public CharacterBase
 {
 public:
-	CLASS_PROTOTYPE(EnemyController)
+	CLASS_PROTOTYPE(FlyingEnemyController)
 
 	void Start() override;
 	void Update(float dt) override;

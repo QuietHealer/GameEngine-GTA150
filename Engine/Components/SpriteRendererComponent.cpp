@@ -31,15 +31,18 @@ namespace nu
 					GetOwner()->GetTransform().position.x,
 					GetOwner()->GetTransform().position.y,
 					GetOwner()->GetTransform().rotation,
-					GetOwner()->GetTransform().scale, m_flipH);
-			}
+					GetOwner()->GetTransform().scale, 
+					m_flipH,
+					m_origin);			}
 			else
 			{
 				renderer.DrawTexture(*m_texture,
 					GetOwner()->GetTransform().position.x,
 					GetOwner()->GetTransform().position.y,
 					GetOwner()->GetTransform().rotation,
-					GetOwner()->GetTransform().scale, m_flipH);
+					GetOwner()->GetTransform().scale, 
+					m_flipH,
+					m_origin);
 			}
 		}
 	}

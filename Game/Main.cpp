@@ -1,8 +1,7 @@
 #include "Engine.h"
-#include "SpaceGame/Player.h"
-#include "SpaceGame/Enemy.h"
 #include "Assets.h"
 #include "SpaceGame/SpaceGame.h"
+#include "SpriteGame/SpriteGame.h"
 
 #include <iostream>
 #include <vector>
@@ -333,7 +332,8 @@ int main()
     // INITALIZATION
     Engine::Get().Initialize();
 
-    std::unique_ptr game = std::make_unique<SpaceGame>();
+    //std::unique_ptr game = std::make_unique<SpaceGame>();
+    std::unique_ptr game = std::make_unique<SpriteGame>();
 
     game->Initialize();
 
